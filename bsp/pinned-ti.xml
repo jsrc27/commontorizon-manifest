@@ -10,7 +10,7 @@
     <project name="meta-ti"
              path="layers/meta-ti"
              remote="yocto"
-             revision="5769fcfb036661a3ceaeb8f90d8a9928e3d29199"
+             revision="461eee98bde6112562fb24c43729856f937bb091"
              upstream="kirkstone" />
 
 </manifest>

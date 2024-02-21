@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<manifest>
+
+    <project
+        name="meta-intel"
+        path="layers/meta-intel"
+        remote="yocto"
+        revision="f932ebb2544170f43edd22739f44307809bf8cfb" />
+
+</manifest>

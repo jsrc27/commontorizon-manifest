@@ -6,6 +6,8 @@
     <include name="bsp/pinned-tdx.xml" />
     <include name="bsp/pinned-ti.xml"/>
     <include name="bsp/pinned-rpi.xml" />
+    <include name="bsp/pinned-intel.xml" />
+    <include name="bsp/pinned-riscv.xml" />
 
     <remote
         alias="repo"
@@ -19,41 +21,14 @@
 
     <remote
         alias="repo"
-        fetch="https://github.com/microhobby"
-        name="mbc" />
-
-    <remote
-        alias="repo"
         fetch="https://github.com/commontorizon"
         name="cmt" />
-
-    <remote
-        alias="repo"
-        fetch="https://github.com/foundriesio"
-        name="fio" />
-
-    <remote
-        alias="repo"
-        fetch="https://github.com/riscv"
-        name="rcv" />
 
     <project
         name="yocto-docs"
         path="layers/yocto-docs"
         remote="yocto"
         revision="08fda7a5601393617b1ecfe89229459e14a90b1d" />
-
-    <project
-        name="meta-riscv"
-        path="layers/meta-riscv"
-        remote="mbc"
-        revision="994188a8b48461f2acdcfee9427e590bcbb6d164" />
-
-    <project
-        name="meta-intel"
-        path="layers/meta-intel"
-        remote="yocto"
-        revision="f932ebb2544170f43edd22739f44307809bf8cfb" />
 
     <project
         name="meta-security"

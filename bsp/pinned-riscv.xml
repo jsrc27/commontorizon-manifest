@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<manifest>
+
+    <remote
+        alias="repo"
+        fetch="https://github.com/riscv"
+        name="rcv" />
+
+    <remote
+        alias="repo"
+        fetch="https://github.com/microhobby"
+        name="mbc" />
+
+    <project
+        name="meta-riscv"
+        path="layers/meta-riscv"
+        remote="mbc"
+        revision="994188a8b48461f2acdcfee9427e590bcbb6d164" />
+
+</manifest>

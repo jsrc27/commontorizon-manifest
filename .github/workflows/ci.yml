@@ -1,0 +1,17 @@
+name: CI - Compile
+
+on:
+  push:
+    branches: [ kirkstone, develop ]
+
+jobs:
+  build-yocto:
+    runs-on: [self-hosted, linux, x64, yocto]
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build Yocto Rootfs
+      run:  |
+        repo sync
+        source setup-environment MACHINE=qemux86-64.inc
+        bitbake torizon-core-docker

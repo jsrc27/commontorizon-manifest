@@ -9,6 +9,7 @@ jobs:
     runs-on: [self-hosted, linux, x64, yocto]
     steps:
     - name: Build Yocto Rootfs
+      working-directory: /workdir
       run:  |
         repo init -u https://github.com/jsrc27/commontorizon-manifest.git -b develop -m torizoncore/common.xml
         repo sync

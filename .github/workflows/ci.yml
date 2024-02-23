@@ -12,6 +12,7 @@ jobs:
 
     - name: Build Yocto Rootfs
       run:  |
+        repo init -m commontorizon-manifest/torizoncore/common.xml
         repo sync
         source setup-environment MACHINE=qemux86-64.inc
         bitbake torizon-core-docker

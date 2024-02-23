@@ -64,7 +64,7 @@
         name="meta-common-torizon"
         path="layers/meta-common-torizon"
         remote="cmt"
-        revision="c594c1cf906a3907f151fe9dd211ff13de584eb4">
+        revision="904430e3310071153bdfd1c9d3659212343162c5">
 
         <linkfile
             dest="setup-environment"

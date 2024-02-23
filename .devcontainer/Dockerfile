@@ -38,6 +38,8 @@ RUN apt-get -q -y update && \
     docker-compose-plugin \
     zip \
     p7zip-full \
+    libgtk-3-dev \
+    python3-gi \
     gh && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*

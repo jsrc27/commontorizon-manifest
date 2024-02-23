@@ -499,6 +499,32 @@
             ]
         },
         {
+            "label": "- Task Dependency Explorer",
+            "detail": "",
+            "command": "startup-tdx.sh",
+            "type": "shell",
+            "options": {
+                "cwd": "/workdir/torizon",
+                "env": {
+                    "EULA": "1",
+                    "ACCEPT_FSL_EULA": "1",
+                    "MACHINE": "${config:machine}",
+                    "IMAGE": "${config:image}",
+                    "CMD": "bitbake -g ${input:recipeName} -u taskexp"
+                }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "window",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
             "label": "configure-bridge",
             "detail": "",
             "hide": true,

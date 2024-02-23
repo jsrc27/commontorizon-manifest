@@ -8,11 +8,9 @@ jobs:
   build-yocto:
     runs-on: [self-hosted, linux, x64, yocto]
     steps:
-    - uses: actions/checkout@v4
-
     - name: Build Yocto Rootfs
       run:  |
-        repo init -m commontorizon-manifest/torizoncore/common.xml
+        repo init -m https://github.com/jsrc27/commontorizon-manifest.git -b develop -m torizoncore/common.xml
         repo sync
         source setup-environment MACHINE=qemux86-64.inc
         bitbake torizon-core-docker

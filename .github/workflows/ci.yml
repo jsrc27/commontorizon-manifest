@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: Build Yocto Rootfs
       run:  |
-        repo init -m https://github.com/jsrc27/commontorizon-manifest.git -b develop -m torizoncore/common.xml
+        repo init -u https://github.com/jsrc27/commontorizon-manifest.git -b develop -m torizoncore/common.xml
         repo sync
         source setup-environment MACHINE=qemux86-64.inc
         bitbake torizon-core-docker

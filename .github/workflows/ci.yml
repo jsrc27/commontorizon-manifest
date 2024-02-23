@@ -12,5 +12,5 @@ jobs:
       run:  |
         repo init -u https://github.com/jsrc27/commontorizon-manifest.git -b develop -m torizoncore/common.xml
         repo sync
-        MACHINE=qemux86-64 source setup-environment 
+        MACHINE=qemux86-64 EULA=1 source setup-environment 
         bitbake torizon-core-docker

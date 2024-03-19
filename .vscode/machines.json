@@ -1,109 +1,145 @@
 [
     {
+        "title": "verdin-imx8mm",
         "machine": "verdin-imx8mm",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "none",
         "bmap": false
     },
     {
+        "title": "verdin-imx8mp",
         "machine": "verdin-imx8mp",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "none",
         "bmap": false
     },
     {
+        "title": "apalis-imx8",
         "machine": "apalis-imx8",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "none",
         "bmap": false
     },
     {
+        "title": "raspberrypi4-64",
         "machine": "raspberrypi4-64",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic.bz2",
         "bmap": true,
         "dump_image": true
     },
     {
+        "title": "raspberrypi3-64",
         "machine": "raspberrypi3-64",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic.bz2",
         "bmap": true,
         "dump_image": true
     },
     {
+        "title": "nezha-allwinner-d1",
         "machine": "nezha-allwinner-d1",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic.gz",
         "bmap": true
     },
     {
+        "title": "intel-corei7-64",
         "machine": "intel-corei7-64",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic",
         "bmap": false
     },
     {
+        "title": "intel-corei7-64-xenomai",
+        "machine": "intel-corei7-64",
+        "image": "torizon-core-common-docker-dev",
+        "distro": "torizon-xenomai",
+        "variant": "-xenomai-",
+        "build_dir": "build-torizon-xenomai",
+        "image_format": "wic",
+        "bmap": false
+    },
+    {
+        "title": "beaglebone-yocto",
         "machine": "beaglebone-yocto",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic",
         "bmap": true
     },
     {
+        "title": "beagleplay",
         "machine": "beagleplay",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic.xz",
         "bmap": true
     },
     {
+        "title": "raspberrypi0-2w-64",
         "machine": "raspberrypi0-2w-64",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic.bz2",
         "bmap": true,
         "dump_image": true
     },
     {
+        "title": "qemuarm64",
         "machine": "qemuarm64",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic",
         "bmap": false,
         "firmware": "u-boot.bin"
     },
     {
+        "title": "raspberrypi0-wifi",
         "machine": "raspberrypi0-wifi",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic.bz2",
         "bmap": true,
         "dump_image": true
     },
     {
+        "title": "qemux86-64",
         "machine": "qemux86-64",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic",
         "bmap": false

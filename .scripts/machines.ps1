@@ -27,7 +27,7 @@ $machinesFile = Join-Path $PSScriptRoot "../.vscode/machines.json"
 $machine = `
     Get-Content $machinesFile | `
     ConvertFrom-Json | `
-    Where-Object { $_.machine.Equals($_machine) }
+    Where-Object { $_.title.Equals($_machine) }
 
 # rewrite the settings json setting the machine properties
 if ($null -ne $machine) {
@@ -39,6 +39,7 @@ if ($null -ne $machine) {
     $settings.distro = $machine.distro
     $settings.build_dir = $machine.build_dir
     $settings.image_format = $machine.image_format
+    $settings.variant = $machine.variant
 
     # write the settings back to the file
     $settings | ConvertTo-Json -Depth 100 | Out-File $settingsFile

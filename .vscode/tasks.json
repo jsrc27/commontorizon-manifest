@@ -318,7 +318,7 @@
             "args": [
                 "bmaptool",
                 "copy",
-                "/workdir/torizon/${config:build_dir}/deploy/images/${config:machine}/${config:image}${config:variant}${config:machine}.${config:image_format}",
+                "/workdir/torizon/${config:build_dir}/deploy/images/${config:machine}/${config:image}${config:variant}-${config:machine}.${config:image_format}",
                 "${config:flash_device}"
             ],
             "problemMatcher": [
@@ -344,7 +344,7 @@
                 "bmaptool",
                 "copy",
                 "--nobmap",
-                "/workdir/torizon/${config:build_dir}/deploy/images/${config:machine}/${config:image}${config:variant}${config:machine}.${config:image_format}",
+                "/workdir/torizon/${config:build_dir}/deploy/images/${config:machine}/${config:image}${config:variant}-${config:machine}.${config:image_format}",
                 "${config:flash_device}"
             ],
             "problemMatcher": [

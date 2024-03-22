@@ -76,7 +76,7 @@
         "machine": "intel-corei7-64",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon-xenomai",
-        "variant": "-xenomai-",
+        "variant": "-xenomai",
         "build_dir": "build-torizon-xenomai",
         "image_format": "wic",
         "bmap": false

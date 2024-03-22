@@ -7,7 +7,8 @@
         "variant": "",
         "build_dir": "build-torizon",
         "image_format": "none",
-        "bmap": false
+        "bmap": false,
+        "arch": "arm64"
     },
     {
         "title": "verdin-imx8mp",
@@ -17,7 +18,8 @@
         "variant": "",
         "build_dir": "build-torizon",
         "image_format": "none",
-        "bmap": false
+        "bmap": false,
+        "arch": "arm64"
     },
     {
         "title": "apalis-imx8",
@@ -27,7 +29,8 @@
         "variant": "",
         "build_dir": "build-torizon",
         "image_format": "none",
-        "bmap": false
+        "bmap": false,
+        "arch": "arm64"
     },
     {
         "title": "raspberrypi4-64",
@@ -38,7 +41,8 @@
         "build_dir": "build-torizon",
         "image_format": "wic.bz2",
         "bmap": true,
-        "dump_image": true
+        "dump_image": true,
+        "arch": "arm64"
     },
     {
         "title": "raspberrypi3-64",
@@ -49,7 +53,8 @@
         "build_dir": "build-torizon",
         "image_format": "wic.bz2",
         "bmap": true,
-        "dump_image": true
+        "dump_image": true,
+        "arch": "arm64"
     },
     {
         "title": "nezha-allwinner-d1",
@@ -59,7 +64,8 @@
         "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic.gz",
-        "bmap": true
+        "bmap": true,
+        "arch": "riscv64"
     },
     {
         "title": "intel-corei7-64",
@@ -69,7 +75,8 @@
         "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic",
-        "bmap": false
+        "bmap": false,
+        "arch": "x86_64"
     },
     {
         "title": "intel-corei7-64-xenomai",
@@ -79,7 +86,8 @@
         "variant": "-xenomai",
         "build_dir": "build-torizon-xenomai",
         "image_format": "wic",
-        "bmap": false
+        "bmap": false,
+        "arch": "x86_64"
     },
     {
         "title": "beaglebone-yocto",
@@ -89,7 +97,8 @@
         "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic",
-        "bmap": true
+        "bmap": true,
+        "arch": "armhf"
     },
     {
         "title": "beagleplay",
@@ -99,7 +108,8 @@
         "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic.xz",
-        "bmap": true
+        "bmap": true,
+        "arch": "arm64"
     },
     {
         "title": "raspberrypi0-2w-64",
@@ -110,7 +120,8 @@
         "build_dir": "build-torizon",
         "image_format": "wic.bz2",
         "bmap": true,
-        "dump_image": true
+        "dump_image": true,
+        "arch": "arm64"
     },
     {
         "title": "qemuarm64",
@@ -121,7 +132,8 @@
         "build_dir": "build-torizon",
         "image_format": "wic",
         "bmap": false,
-        "firmware": "u-boot.bin"
+        "firmware": "u-boot.bin",
+        "arch": "arm64"
     },
     {
         "title": "raspberrypi0-wifi",
@@ -132,7 +144,8 @@
         "build_dir": "build-torizon",
         "image_format": "wic.bz2",
         "bmap": true,
-        "dump_image": true
+        "dump_image": true,
+        "arch": "arm"
     },
     {
         "title": "qemux86-64",
@@ -142,6 +155,7 @@
         "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic",
-        "bmap": false
+        "bmap": false,
+        "arch": "x86_64"
     }
 ]

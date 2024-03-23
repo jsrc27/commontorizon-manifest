@@ -1,6 +1,72 @@
 
 # generate the os_list_imagingutility.json
 $Global:_os_list_imagingutility = [PSCustomObject]@{
+    "imager" = [PSCustomObject]@{
+        "latest_version" = "1.8.5"
+        "url" = "https://www.raspberrypi.com/software/"
+        "devices" =  @(
+            [PSCustomObject]@{
+                "name" = "No filtering"
+                "tags" = @()
+                "default" = $false
+                "description" = "Show every possible image"
+                "matching_type" = "inclusive"
+            },
+            [PSCustomObject]@{
+                "name" = "Raspberry Pi 5"
+                "tags" = @(
+                    "pi5-64bit",
+                    "pi5-32bit"
+                )
+                "icon" = "https://downloads.raspberrypi.com/imager/icons/RPi_5.png"
+                "description" = "The latest Raspberry Pi, Raspberry Pi 5"
+                "matching_type" = "exclusive"
+            },
+            [PSCustomObject]@{
+                "name" = "Raspberry Pi 4"
+                "tags" = @(
+                    "pi4-64bit",
+                    "pi4-32bit"
+                )
+                "default" = $false
+                "icon" = "https://downloads.raspberrypi.com/imager/icons/RPi_4.png"
+                "description" = "Models B, 400, and Compute Modules 4, 4S"
+                "matching_type" = "inclusive"
+            },
+            [PSCustomObject]@{
+                "name" = "Raspberry Pi Zero 2 W"
+                "tags" = @(
+                    "pi3-64bit",
+                    "pi3-32bit"
+                )
+                "default" = $false
+                "icon" = "https://downloads.raspberrypi.com/imager/icons/RPi_Zero_2_W.png"
+                "description" = "The Raspberry Pi Zero 2 W"
+                "matching_type" = "inclusive"
+            },
+            [PSCustomObject]@{
+                "name" = "Raspberry Pi 3"
+                "tags" = @(
+                    "pi3-64bit",
+                    "pi3-32bit"
+                )
+                "default" = $false
+                "icon" = "https://downloads.raspberrypi.com/imager/icons/RPi_3.png"
+                "description" = "Models B, A+, B+, and Compute Module 3, 3+"
+                "matching_type" = "inclusive"
+            },
+            [PSCustomObject]@{
+                "name" = "Raspberry Pi Zero"
+                "tags" = @(
+                    "pi1-32bit"
+                )
+                "default" = $false
+                "icon" = "https://downloads.raspberrypi.com/imager/icons/RPi_Zero.png"
+                "description" = "Models Zero, Zero W, Zero WH"
+                "matching_type" = "inclusive"
+            }
+        )
+    }
     "os_list" = @(
         [PSCustomObject]@{
             "name" = "Torizon OS $($env:COMMON_TORIZON_VERSION)"
@@ -22,6 +88,7 @@ $Global:_os_list_imagingutility = [PSCustomObject]@{
                     "extract_size" = 722892
                     "image_download_size" = 298096
                     "release_date" = "2020-09-14"
+                    "tags" = @()
                 }
             )
         }
@@ -42,7 +109,7 @@ function releaseBundle ($machine, $tag) {
 
     if (
         $null -ne $machine.dump_image -and
-        $machine.dump_image -eq $true 
+        $machine.dump_image -eq $true
     ) {
         # for the raspberry pies we need to create a .img from the .wic
         Write-Host "Creating .img from torizon-core-common-docker-dev-$($machine.machine).$($machine.machine).$($machine.image_format) ..."
@@ -87,6 +154,7 @@ function releaseBundle ($machine, $tag) {
             "extract_sha256" = "$sha256sum"
             "image_download_size" = $_zipSize
             "release_date" = "$releaseDate"
+            "tags" = $machine.models
         }
 
         Set-Location -
@@ -95,7 +163,7 @@ function releaseBundle ($machine, $tag) {
         # create the zip from the .wic file
         Write-Host "Compressing torizon-core-common-docker-dev-$($machine.machine).$($machine.machine).$($machine.image_format) ..."
         # deference the link
-        $_wicPath = readlink torizon-core-common-docker-dev-$($machine.machine).$($machine.image_format) 
+        $_wicPath = readlink torizon-core-common-docker-dev-$($machine.machine).$($machine.image_format)
         7z a -tzip -bsp1 `
             /releases/torizon-core-common-docker-dev-$tag-$($machine.machine).zip `
             $_wicPath

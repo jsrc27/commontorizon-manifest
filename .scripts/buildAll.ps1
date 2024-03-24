@@ -29,7 +29,7 @@ foreach ($machine in $machines) {
         Write-Host -ForegroundColor Blue `
             "`n`n Configuring and Building for $($machine.machine) `n`n"
         # - Configure Machine and Image
-        ./.vscode/tasks.ps1 run 38 $machine.machine $machine.image
+        ./.vscode/tasks.ps1 run 38 $machine.title $machine.image
         # - Clean
         ./.vscode/tasks.ps1 run bitbake-clean-torizonCore-container
         # - Build

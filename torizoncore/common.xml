@@ -8,6 +8,7 @@
     <include name="bsp/pinned-rpi.xml" />
     <include name="bsp/pinned-intel.xml" />
     <include name="bsp/pinned-riscv.xml" />
+    <include name="bsp/pinned-imx.xml" />
 
     <remote
         alias="repo"

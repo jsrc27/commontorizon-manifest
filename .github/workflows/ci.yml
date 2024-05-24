@@ -30,9 +30,9 @@ on:
                     - verdin-imx8mp
 
 env:
-  BUCKET_NAME : "s3://commontorizon/ostree-repo/"
-    AWS_REGION : "eu-central-1"
-    MACHINE : ${{ inputs.machine }}
+  BUCKET_NAME: "s3://commontorizon/ostree-repo/"
+    AWS_REGION: "eu-central-1"
+    MACHINE:  "${{ inputs.machine }}"
 
 jobs:
   build-yocto:

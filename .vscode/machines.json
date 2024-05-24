@@ -1,111 +1,181 @@
 [
     {
+        "title": "verdin-imx8mm",
         "machine": "verdin-imx8mm",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "none",
-        "bmap": false
+        "bmap": false,
+        "arch": "arm64",
+        "models": []
     },
     {
+        "title": "verdin-imx8mp",
         "machine": "verdin-imx8mp",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "none",
-        "bmap": false
+        "bmap": false,
+        "arch": "arm64",
+        "models": []
     },
     {
+        "title": "apalis-imx8",
         "machine": "apalis-imx8",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "none",
-        "bmap": false
+        "bmap": false,
+        "arch": "arm64",
+        "models": []
     },
     {
+        "title": "raspberrypi4-64",
         "machine": "raspberrypi4-64",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic.bz2",
         "bmap": true,
-        "dump_image": true
+        "dump_image": true,
+        "arch": "arm64",
+        "models": [
+            "pi4-64bit"
+        ]
     },
     {
+        "title": "raspberrypi3-64",
         "machine": "raspberrypi3-64",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic.bz2",
         "bmap": true,
-        "dump_image": true
+        "dump_image": true,
+        "arch": "arm64",
+        "models": [
+            "pi3-64bit"
+        ]
     },
     {
+        "title": "nezha-allwinner-d1",
         "machine": "nezha-allwinner-d1",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic.gz",
-        "bmap": true
+        "bmap": true,
+        "arch": "riscv64",
+        "models": []
     },
     {
+        "title": "intel-corei7-64",
         "machine": "intel-corei7-64",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
-        "build_dir": "build-torizon",
-        "image_format": "wic",
-        "bmap": false
-    },
-    {
-        "machine": "beaglebone-yocto",
-        "image": "torizon-core-common-docker-dev",
-        "distro": "torizon",
-        "build_dir": "build-torizon",
-        "image_format": "wic",
-        "bmap": true
-    },
-    {
-        "machine": "beagleplay",
-        "image": "torizon-core-common-docker-dev",
-        "distro": "torizon",
-        "build_dir": "build-torizon",
-        "image_format": "wic.xz",
-        "bmap": true
-    },
-    {
-        "machine": "raspberrypi0-2w-64",
-        "image": "torizon-core-common-docker-dev",
-        "distro": "torizon",
-        "build_dir": "build-torizon",
-        "image_format": "wic.bz2",
-        "bmap": true,
-        "dump_image": true
-    },
-    {
-        "machine": "qemuarm64",
-        "image": "torizon-core-common-docker-dev",
-        "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic",
         "bmap": false,
-        "firmware": "u-boot.bin"
+        "arch": "x86_64",
+        "models": []
     },
     {
-        "machine": "raspberrypi0-wifi",
+        "title": "intel-corei7-64-xenomai",
+        "machine": "intel-corei7-64",
+        "image": "torizon-core-common-docker-dev",
+        "distro": "torizon-xenomai",
+        "variant": "-xenomai",
+        "build_dir": "build-torizon-xenomai",
+        "image_format": "wic",
+        "bmap": false,
+        "arch": "x86_64",
+        "models": []
+    },
+    {
+        "title": "beaglebone-yocto",
+        "machine": "beaglebone-yocto",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
+        "build_dir": "build-torizon",
+        "image_format": "wic",
+        "bmap": true,
+        "arch": "armhf",
+        "models": []
+    },
+    {
+        "title": "beagleplay",
+        "machine": "beagleplay",
+        "image": "torizon-core-common-docker-dev",
+        "distro": "torizon",
+        "variant": "",
+        "build_dir": "build-torizon",
+        "image_format": "wic.xz",
+        "bmap": true,
+        "arch": "arm64",
+        "models": []
+    },
+    {
+        "title": "raspberrypi0-2w-64",
+        "machine": "raspberrypi0-2w-64",
+        "image": "torizon-core-common-docker-dev",
+        "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic.bz2",
         "bmap": true,
-        "dump_image": true
+        "dump_image": true,
+        "arch": "arm64",
+        "models": [
+            "pi3-64bit"
+        ]
     },
     {
+        "title": "qemuarm64",
+        "machine": "qemuarm64",
+        "image": "torizon-core-common-docker-dev",
+        "distro": "torizon",
+        "variant": "",
+        "build_dir": "build-torizon",
+        "image_format": "wic",
+        "bmap": false,
+        "firmware": "u-boot.bin",
+        "arch": "arm64"
+    },
+    {
+        "title": "raspberrypi0-wifi",
+        "machine": "raspberrypi0-wifi",
+        "image": "torizon-core-common-docker-dev",
+        "distro": "torizon",
+        "variant": "",
+        "build_dir": "build-torizon",
+        "image_format": "wic.bz2",
+        "bmap": true,
+        "dump_image": true,
+        "arch": "arm",
+        "models": [
+            "pi1-32bit"
+        ]
+    },
+    {
+        "title": "qemux86-64",
         "machine": "qemux86-64",
         "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
+        "variant": "",
         "build_dir": "build-torizon",
         "image_format": "wic",
-        "bmap": false
+        "bmap": false,
+        "arch": "x86_64"
     }
 ]

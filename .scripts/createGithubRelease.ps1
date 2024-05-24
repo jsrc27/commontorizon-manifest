@@ -32,7 +32,7 @@ foreach ($machine in $machines) {
         -not $machine.machine.Contains("apalis")
     ) {
         Write-Host -ForegroundColor Blue `
-            "`n`n Creating bundle for $($machine.machine) `n`n"
+            "`n`n Creating bundle for $($machine.title) `n`n"
         releaseBundle $machine $tag
     }
 }

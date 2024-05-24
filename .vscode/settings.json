@@ -8,5 +8,6 @@
   "image": "torizon-core-common-docker-dev",
   "distro": "torizon",
   "build_dir": "build-torizon",
-  "image_format": "wic"
+  "image_format": "wic",
+  "variant": ""
 }

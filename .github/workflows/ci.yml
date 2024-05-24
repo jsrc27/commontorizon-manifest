@@ -1,4 +1,4 @@
-name: Yocto build & OSTree push
+name: Yocto build and OSTree push
 
 on:
     workflow_dispatch:

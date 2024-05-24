@@ -1,17 +1,78 @@
-name: CI - Compile
+name: Yocto build & OSTree push
 
 on:
-  push:
-    branches: [ kirkstone, develop ]
+    workflow_dispatch:
+        inputs:
+            machine:
+                description: "Hardware machine"
+                required: true
+                type: choice
+                options:
+                    - apalis-imx6
+                    - apalis-imx8
+                    - beaglebone-yocto
+                    - beagleplay
+                    - colibri-imx6
+                    - colibri-imx6ull-emmc
+                    - colibri-imx7-emmc
+                    - colibri-imx8x
+                    - genericx86-64
+                    - intel-corei7-64
+                    - nezha-allwinner-d1
+                    - qemuarm64
+                    - qemux86-64
+                    - raspberrypi0-2w-64
+                    - raspberrypi0-wifi
+                    - raspberrypi3-64
+                    - raspberrypi4-64
+                    - verdin-am62
+                    - verdin-imx8mm
+                    - verdin-imx8mp
+
+env:
+  BUCKET_NAME : "s3://commontorizon/ostree-repo/"
+    AWS_REGION : "eu-central-1"
+    MACHINE : ${{ inputs.machine }}
 
 jobs:
   build-yocto:
     runs-on: [self-hosted, linux, x64, yocto]
     steps:
-    - name: Build Yocto Rootfs
+    - name: Build Yocto image
       working-directory: /workdir
       run:  |
         repo init -u https://github.com/jsrc27/commontorizon-manifest.git -b develop -m torizoncore/common.xml
         repo sync
-        MACHINE=qemux86-64 EULA=1 source setup-environment 
+        MACHINE=${{ env.MACHINE }} EULA=1 source setup-environment 
         bitbake torizon-core-docker
+    - name: Create tar archive of artifacts
+      run: |
+        tar -cvf ${{ env.MACHINE }}-artifacts.tar -C /workdir/torizon/build-*/deploy/images/${{ env.MACHINE }}/
+    - name: Upload Yocto artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.MACHINE }}-artifacts
+        path: ${{ env.MACHINE }}-artifacts.tar
+
+  ostree-push:
+    runs-on: [self-hosted, linux, x64, yocto]
+    needs: build-yocto
+    steps:
+    - name: Download Yocto artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: ${{ env.MACHINE }}-artifacts
+    - name: Unpack artifacts
+      run: |
+        tar xf ${{ env.MACHINE }}-artifacts.tar
+    - name: Configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::184931540836:role/CommonTorizonOstreePush
+        role-session-name: CommonTorizonOSTreePushSession
+        aws-region: ${{ env.AWS_REGION }}
+    - name: Sync OSTree to S3
+      run: |
+        aws s3 sync ostree_repo ${{ env.BUCKET_NAME }} --exclude='*' --include='objects/*' --include='deltas/*' --size-only
+        aws s3 sync ostree_repo ${{ env.BUCKET_NAME }} --exclude='*' --include='refs/*' --include='summar*' --include 'config*' --delete
+        aws s3 sync ostree_repo ${{ env.BUCKET_NAME }} --exclude='*' --include='objects/*' --include='deltas/*' --size-only --delete

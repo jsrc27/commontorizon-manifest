@@ -47,7 +47,7 @@ jobs:
         bitbake torizon-core-docker
     - name: Create tar archive of artifacts
       run: |
-        tar -cvf ${{ env.MACHINE }}-artifacts.tar -C /workdir/build-*/deploy/images/${{ env.MACHINE }}/
+        tar -cvf ${{ env.MACHINE }}-artifacts.tar -C /workdir/build-*/deploy/images/${{ env.MACHINE }}/ .
     - name: Upload Yocto artifacts
       uses: actions/upload-artifact@v4
       with:

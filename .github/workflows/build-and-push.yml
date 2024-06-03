@@ -68,7 +68,7 @@ jobs:
     - name: Configure aws credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
-        role-to-assume: arn:aws:iam::184931540836:role/CommonTorizonOstreePush
+        role-to-assume: arn:aws:iam::590183833123:role/CommonTorizonOstreePush
         role-session-name: CommonTorizonOSTreePushSession
         aws-region: ${{ env.AWS_REGION }}
     - name: Sync OSTree to S3

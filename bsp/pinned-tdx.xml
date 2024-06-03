@@ -8,19 +8,19 @@
     <project name="meta-toradex-bsp-common.git"
              path="layers/meta-toradex-bsp-common"
              remote="tdx"
-             revision="f35b8eba99f79f9c74725e9860f644d40dc9f9bc"
+             revision="ddc7485b056cc364d9cf2b3c46dc0b542721bd53"
              upstream="kirkstone-6.x.y" />
 
     <project name="meta-toradex-nxp.git"
              path="layers/meta-toradex-nxp"
              remote="tdx"
-             revision="7311344a7126599cbba8e7189c278a2e0ba741d5"
+             revision="6d223ce580b67dc804c92638ab947e0a8c06d034"
              upstream="kirkstone-6.x.y" />
 
     <project name="meta-toradex-ti.git"
              path="layers/meta-toradex-ti"
              remote="tdx"
-             revision="6e8faeaf7c4b411b098a659bf467cda52b63c492"
+             revision="7ceb33d01308987f7d3caa85e3b70ddb5d9ec5cd"
              upstream="kirkstone-6.x.y" />
 
 </manifest>

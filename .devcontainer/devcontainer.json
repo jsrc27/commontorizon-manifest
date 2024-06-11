@@ -15,6 +15,7 @@
                 "microhobby.vscode-tasks-label",
                 "microhobby.vscode-android-repo",
                 "joaompinto.vscode-graphviz",
+                "mads-hartmann.bash-ide-vscode",
                 "eamodio.gitlens"
             ]
         }

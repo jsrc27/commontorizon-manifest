@@ -89,10 +89,14 @@ jobs:
     - name: Unpack artifacts
       run: |
         tar xf ${{ env.MACHINE }}-artifacts.tar
-    - name: Promote OSTree
+    - name: Evaluate OSTree ref
       run: |
         echo "REF=$(ostree refs --repo ostree_repo)" >> "$GITHUB_ENV"
+    - name: Evaluate OSTree commit
+      run: |
         echo "COMMIT=$(ostree rev-parse $REF --repo ostree_repo)" >> "$GITHUB_ENV"
+    - name: Promote OSTree
+      run: |
         ostree-repo-promotion.py --srcRepo ostree_repo --targetRepo ${{ env.MASTER_REPO }} --ref $REF --commit $COMMIT
     - name: Configure aws credentials
       uses: aws-actions/configure-aws-credentials@v4

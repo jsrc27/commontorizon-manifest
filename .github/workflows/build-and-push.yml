@@ -28,11 +28,31 @@ on:
                     - verdin-am62
                     - verdin-imx8mm
                     - verdin-imx8mp
+            branch:
+                description: "Manifest repo branch to use"
+                required: true
+                type: choice
+                options:
+                    - kirkstone
+                    - master
+                    - nanbield
+            manifest:
+                description: "Manifest file to use"
+                required: true
+                type: choice
+                options:
+                    - common.xml
+                    - default.xml
+                    - integration.xml
+                    - next.xml
 
 env:
   BUCKET_NAME: "s3://commontorizon/ostree-repo/"
   AWS_REGION: "eu-central-1"
-  MACHINE:  "${{ inputs.machine }}"
+  MACHINE: "${{ inputs.machine }}"
+  BRANCH: "${{ inputs.branch }}"
+  MANIFEST: "${{ inputs.manifest }}"
+  MASTER_REPO: "/ostree"
 
 permissions:
     id-token: write   # This is required for requesting the JWT
@@ -45,7 +65,7 @@ jobs:
     - name: Build Yocto image
       working-directory: /workdir
       run:  |
-        repo init -u https://github.com/jsrc27/commontorizon-manifest.git -b develop -m torizoncore/common.xml
+        repo init -u https://github.com/commontorizon/commontorizon-manifest.git -b ${{ env.BRANCH }} -m torizoncore/${{ env.MANIFEST }}
         repo sync
         MACHINE=${{ env.MACHINE }} EULA=1 source setup-environment 
         bitbake torizon-core-docker
@@ -69,14 +89,20 @@ jobs:
     - name: Unpack artifacts
       run: |
         tar xf ${{ env.MACHINE }}-artifacts.tar
+    - name: Promote OSTree
+      run: |
+        echo "REF=$(ostree --repo ostree_repo refs)" >> "$GITHUB_ENV"
+        echo "COMMIT=$(ostree --repo ostree_repo rev-parse $REF)" >> "$GITHUB_ENV"
+        ostree-repo-promotion.py --srcRepo ostree_repo --targetRepo ${{ env.MASTER_REPO }} --ref $REF --commit $COMMIT
     - name: Configure aws credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
         role-to-assume: arn:aws:iam::590183833123:role/CommonTorizonOstreePush
         role-session-name: CommonTorizonOSTreePushSession
         aws-region: ${{ env.AWS_REGION }}
-    - name: Sync OSTree to S3
+    - name: Sync Master OSTree to S3
       run: |
-        aws s3 sync ostree_repo ${{ env.BUCKET_NAME }} --exclude='*' --include='objects/*' --include='deltas/*' --size-only
-        aws s3 sync ostree_repo ${{ env.BUCKET_NAME }} --exclude='*' --include='refs/*' --include='summar*' --include 'config*' --delete
-        aws s3 sync ostree_repo ${{ env.BUCKET_NAME }} --exclude='*' --include='objects/*' --include='deltas/*' --size-only --delete
+        ostree --repo ${{ env.MASTER_REPO}} summary -u
+        aws s3 sync ${{ env.MASTER_REPO }} ${{ env.BUCKET_NAME }} --exclude='*' --include='objects/*' --include='deltas/*' --size-only
+        aws s3 sync ${{ env.MASTER_REPO }} ${{ env.BUCKET_NAME }} --exclude='*' --include='refs/*' --include='summar*' --include 'config*' --delete
+        aws s3 sync ${{ env.MASTER_REPO }} ${{ env.BUCKET_NAME }} --exclude='*' --include='objects/*' --include='deltas/*' --size-only --delete

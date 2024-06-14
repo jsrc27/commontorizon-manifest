@@ -91,8 +91,8 @@ jobs:
         tar xf ${{ env.MACHINE }}-artifacts.tar
     - name: Promote OSTree
       run: |
-        echo "REF=$(ostree --repo ostree_repo refs)" >> "$GITHUB_ENV"
-        echo "COMMIT=$(ostree --repo ostree_repo rev-parse $REF)" >> "$GITHUB_ENV"
+        echo "REF=$(ostree refs --repo ostree_repo)" >> "$GITHUB_ENV"
+        echo "COMMIT=$(ostree rev-parse $REF --repo ostree_repo)" >> "$GITHUB_ENV"
         ostree-repo-promotion.py --srcRepo ostree_repo --targetRepo ${{ env.MASTER_REPO }} --ref $REF --commit $COMMIT
     - name: Configure aws credentials
       uses: aws-actions/configure-aws-credentials@v4

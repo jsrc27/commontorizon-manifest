@@ -67,7 +67,8 @@ jobs:
       run:  |
         repo init -u https://github.com/commontorizon/commontorizon-manifest.git -b ${{ env.BRANCH }} -m torizoncore/${{ env.MANIFEST }}
         repo sync
-        MACHINE=${{ env.MACHINE }} EULA=1 source setup-environment 
+        MACHINE=${{ env.MACHINE }} EULA=1 source setup-environment
+        echo 'TDX_PURPOSE = "Release"' >> conf/local.conf
         bitbake torizon-core-docker
     - name: Create tar archive of artifacts
       run: |
@@ -106,7 +107,7 @@ jobs:
         aws-region: ${{ env.AWS_REGION }}
     - name: Sync Master OSTree to S3
       run: |
-        ostree --repo ${{ env.MASTER_REPO}} summary -u
+        ostree summary -u --repo ${{ env.MASTER_REPO}}
         aws s3 sync ${{ env.MASTER_REPO }} ${{ env.BUCKET_NAME }} --exclude='*' --include='objects/*' --include='deltas/*' --size-only
         aws s3 sync ${{ env.MASTER_REPO }} ${{ env.BUCKET_NAME }} --exclude='*' --include='refs/*' --include='summar*' --include 'config*' --delete
         aws s3 sync ${{ env.MASTER_REPO }} ${{ env.BUCKET_NAME }} --exclude='*' --include='objects/*' --include='deltas/*' --size-only --delete

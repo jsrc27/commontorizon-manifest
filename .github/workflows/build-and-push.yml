@@ -68,7 +68,7 @@ jobs:
         repo init -u https://github.com/commontorizon/commontorizon-manifest.git -b ${{ env.BRANCH }} -m torizoncore/${{ env.MANIFEST }}
         repo sync
         MACHINE=${{ env.MACHINE }} EULA=1 source setup-environment
-        echo 'TDX_PURPOSE = "Release"' >> conf/local.conf
+        grep -qxF 'TDX_PURPOSE = "Release"' conf/local.conf || echo 'TDX_PURPOSE = "Release"' >> conf/local.conf
         bitbake torizon-core-docker
     - name: Create tar archive of artifacts
       run: |
@@ -83,6 +83,9 @@ jobs:
     runs-on: [self-hosted, linux, x64, yocto]
     needs: build-yocto
     steps:
+    - name: Cleanup workspace
+      run: |
+        rm -rf ${{ github.workspace }}/*
     - name: Download Yocto artifacts
       uses: actions/download-artifact@v4
       with:

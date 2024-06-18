@@ -64,7 +64,8 @@ jobs:
     steps:
     - name: Build Yocto image
       working-directory: /workdir
-      run:  |
+      run: |
+        rm -rf * .repo
         repo init -u https://github.com/commontorizon/commontorizon-manifest.git -b ${{ env.BRANCH }} -m torizoncore/${{ env.MANIFEST }}
         repo sync
         MACHINE=${{ env.MACHINE }} EULA=1 source setup-environment

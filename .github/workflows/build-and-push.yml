@@ -47,7 +47,7 @@ on:
                     - next.xml
 
 env:
-  BUCKET_NAME: "s3://commontorizon/ostree-repo/"
+  BUCKET_NAME: "s3://commontorizon.dev/ostree-repo/"
   AWS_REGION: "eu-central-1"
   MACHINE: "${{ inputs.machine }}"
   BRANCH: "${{ inputs.branch }}"

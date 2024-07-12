@@ -1,0 +1,37 @@
+name: Publish delegations metadata to S3 bucket
+
+on:
+    workflow_dispatch:
+
+env:
+  BUCKET_NAME: "s3://commontorizon.dev/ostree-repo/"
+  AWS_REGION: "eu-central-1"
+
+permissions:
+    id-token: write   # This is required for requesting the JWT
+    contents: read    # This is required for actions/checkout
+
+jobs:
+  publish-delegations:
+    runs-on: [self-hosted, linux, x64, yocto]
+    steps:
+    - name: Create delegation files 
+      run: |
+        create-delegations-from-ostree.py
+    - name: Configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::590183833123:role/CommonTorizonOstreePushToS3
+        role-session-name: CommonTorizonOSTreePushSession
+        aws-region: ${{ env.AWS_REGION }}
+    - name: Sign and push delegation files to S3 bucket
+      env:
+        PUBKEY: ${{ secrets.OS_DELEGATION_KEY_PUB }}
+        PRIVKEY: ${{ secrets.OS_DELEGATION_KEY }}
+        SIGNING_PUBKEY: "key.pub"
+        SIGNING_PRIVKEY: "key.sec"
+      run: |
+        printf '%s' "$PUBKEY" > "$SIGNING_PUBKEY"
+        printf '%s' "$PRIVKEY" > "$SIGNING_PRIVKEY"
+        sign-and-push-delegations.sh
+        rm -rf "$SIGNING_PRIVKEY" "$SIGNING_PUBKEY"

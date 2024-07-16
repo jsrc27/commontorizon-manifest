@@ -15,9 +15,9 @@ jobs:
   publish-delegations:
     runs-on: [self-hosted, linux, x64, yocto]
     steps:
-    - name: Create delegation files 
+    - name: Create delegation files
       run: |
-        create-delegations-from-ostree.py
+        /usr/bin/create-delegations-from-ostree.py
     - name: Configure aws credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
@@ -33,5 +33,5 @@ jobs:
       run: |
         printf '%s' "$PUBKEY" > "$SIGNING_PUBKEY"
         printf '%s' "$PRIVKEY" > "$SIGNING_PRIVKEY"
-        sign-and-push-delegations.sh
+        /usr/bin/sign-and-push-delegations.sh
         rm -rf "$SIGNING_PRIVKEY" "$SIGNING_PUBKEY"
